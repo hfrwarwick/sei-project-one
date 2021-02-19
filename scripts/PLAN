@@ -1,0 +1,36 @@
+BRIEF: 
+- User has controllable ship that shoots lasers to destroys alien ships
+- alien ships move towards player, shooting lasers, if laser touches player, 1 life lost, if ship touches player 1 life lost, all lives gone means gameover
+- if plater's laser hits alien, it disappears 
+- 3 levels?
+- 3 lives
+- score
+- add music
+
+HTML:
+- Header for title
+- span for lives, score 
+- image or google fonts for name 
+- button to toggle music
+
+CSS: 
+- display flex, wrap? 
+- design for aliens and user?
+- Retro, 8-bit?
+- The mandalorian, baby yoda
+
+JS:
+- Eventlisteners, click, one for start and one for when player shoots laser
+- Variables for grid, width, cells, player and enemy?
+- Create function for grid
+- function to start game, click screen
+- make index for aliens? 0-29? 
+- Use positions on grid for enemy that progress down
+- event keycode to move player
+- Use .add and .remove for when enemy and player moves through grid.
+- add audio when laser is shot and enemy explodes? 
+- laser moves through setInterval? with .add .remove?
+- When a laser enters the same grid square as an enemy, enemy explodes and disappears
+- If enemy laser enters same square as the player, player loses 1 life.
+- player wins when all enemies are destroyed. When all enemy divs become hidden, game advances to next level?
+- Next level, enemenies speed up and final level enemeies appear random (math.random),

@@ -1,3 +1,55 @@
-body {
+/* body {
   background-color: aqua;
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+header {
+  background-image: url(../assets/Screenshot\ 2021-02-19\ at\ 12.46.55.png);
+  background-size: 430px;
+  padding: 57px;
+  background-repeat: no-repeat;}
+
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  
+}
+
+.grid-wrapper {
+  height: 115vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  align-items: center;
+  background-color: darkgray;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  height: 700px;
+  width: 600px;
+}
+
+.grid div {
+  border: 1px solid lightgrey;
+  flex-grow: 1;
+  height: 10%;
+  width: 10%;
+}
+
+.grid div.mando {
+  background-image: url('../assets/harrymando.png');
+  background-image: url('../assets/cat.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
 }

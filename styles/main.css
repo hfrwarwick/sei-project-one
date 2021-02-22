@@ -18,7 +18,7 @@ body {
 }
 
 .grid-wrapper {
-  height: 115vh;
+  height: 69vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,14 +30,14 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 100%;
-  width: 50%;
+  height: 810px;
+  width: 600px;
 }
 
 .grid div {
-  border: lightgrey;
+  border: 1px solid lightgrey;
   flex-grow: 1;
-  height: 62px;
+  height: 54px;
   width: 40px;
 }
 
@@ -53,7 +53,6 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  border-radius: 10px;
 }
 
 .grid div.laser {

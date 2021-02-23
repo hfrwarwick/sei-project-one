@@ -1,13 +1,11 @@
-/* body {
-  background-color: aqua;
-} */
+
 
 * {
   box-sizing: border-box;
 }
 
 header {
-  background-image: url(../assets/Screenshot\ 2021-02-19\ at\ 12.46.55.png);
+  /* background-image: url(../assets/Screenshot\ 2021-02-19\ at\ 12.46.55.png); */
   background-size: 430px;
   padding: 57px;
   background-repeat: no-repeat;}
@@ -15,6 +13,10 @@ header {
 body {
   height: 100vh;
   margin: 0;
+  background-image: url(../assets/the-mandalorian-wallpaper-4k.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 .grid-wrapper {

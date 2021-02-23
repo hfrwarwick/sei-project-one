@@ -3,9 +3,13 @@ function init() {
   // * Variables
 
   const grid = document.querySelector('.grid')
+  const scoreDisplay = document.querySelector('#score') 
+  const livesDisplay = document.querySelector('#lives')
   const width = 15
   const cellCount = width * width
   const cells = []
+  let livesRemaining = 3
+  let score = 0
 
   const mandoClass = 'mando'
   const trooperClass = 'troopers'
@@ -14,6 +18,7 @@ function init() {
   let troopersCurrentPosition = 0
   // let trooperDestroyed = [] 
   let trooperID
+ 
   
   // const scoreDisplay = document.querySelector('#score-display')
   // const livesDisplay = document.querySelector('#lives-display')
@@ -67,10 +72,7 @@ function init() {
       mandoCurrentPosition++
     } else if (key === 37 && mandoCurrentPosition % width !== 0) {
       mandoCurrentPosition--
-    } else {
-      console.log('INVALID KEY')
     }
-    
     addMando(mandoCurrentPosition)
   }
 
@@ -78,25 +80,56 @@ function init() {
   
   let direction = 1
 
-  function moveTroopers() {
+  // function moveTroopers() {
 
-    for (let i = 0; i <= stormTroopers.length - 1, i++) {
-      cells[stormTroopers[i]].classList.remove('troopers') 
-    }
-    for (let i = 0; i <= stormTroopers.length - 1, i++) {
-      stormTroopers[i] += direction
-    }
-    for (let i = 0; i <= stormTroopers.length - 1, i++) {
-      cells[stormTroopers[i]].classList.add('troopers')
-    }
-  }
-  trooperID = setInterval(moveTroopers, 500)
+  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
+  //     cells[stormTroopers[i]].classList.remove('troopers') 
+  //   }
+  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
+  //     stormTroopers[i] += direction
+  //   }
+  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
+  //     cells[stormTroopers[i]].classList.add('troopers')
+  //   }
+  // }
+  // trooperID = setInterval(moveTroopers, 500)
 
   // * Lasers
 
+  function shoot(event) {
+    let laserId 
+    let laserCurrentPosition = mandoCurrentPosition
 
+    function moveLaser() {
+      cells[laserCurrentPosition].classList.remove('laser')
+      laserCurrentPosition -= width
+      cells[laserCurrentPosition].classList.add('laser')
+      if (cells.laserCurrentPosition.classList.contains('troopers')) { 
+        console.log('boom')
+        cells.laserCurrentPosition.classList.remove('laser') 
+        cells.laserCurrentPosition.classList.remove('troopers') 
+        cells.laserCurrentPosition.classList.add('boom') 
+        score += 100 
+        scoreDisplay.innerText = score  
+      // } else {
+      //   livesRemaining--  
+      //   livesDisplay.innerText = livesRemaining
+      }
+    }
+  
+    // * Event listener to shoot laser
+
+    document.addEventListener('keyup', event => {
+      if (event.keyCode === 32) {
+        laserId = setInterval(moveLaser, 100)
+      } 
+    })
+
+  }
   // * Event listeners
+
   document.addEventListener('keyup', handleKeyUp)
+  document.addEventListener('keyup', shoot)
 
   createGrid(mandoStartPosition) 
 

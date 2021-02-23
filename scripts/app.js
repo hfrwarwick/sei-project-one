@@ -29,6 +29,7 @@ function init() {
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
+      //cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -77,23 +78,37 @@ function init() {
 
   // * Move Troopers 
   
-  let direction = 1
+  // let direction = 1
 
-  function moveTroopers() {
+  // function moveTroopers() {
+  //   const leftSide = stormTroopers[0] % width === 0
+  //   const rightSide = stormTroopers[stormTroopers.length -1] % width === width -1
 
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      cells[stormTroopers[i]].classList.remove('troopers') 
-    }
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      stormTroopers[i] += direction
-    }
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      cells[stormTroopers[i]].classList.add('troopers')
-    }
-  }
-  trooperID = setInterval(moveTroopers, 500)
+  //   if ((leftSide && direction === -1) || (rightSide && direction === 1)){
+  //     direction = width
+  //   } else if (direction === width) {
+  //     if (leftSide) direction = 1
+  //     else direction = -1
+  //   }
 
-  // * Lasers
+  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
+  //     cells[stormTroopers[i]].classList.remove('troopers') 
+  //   }
+  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
+  //     stormTroopers[i] += direction
+  //   }
+  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
+  //     if (!trooperDestroyed.includes(i)) {
+  //       cells[stormTroopers[i]].classList.add('troopers')
+  //     }
+  //   }
+
+  // }
+  // trooperID = setInterval(moveTroopers, 500)
+
+  
+
+  // * Player shoots lasers
 
   function shoot(event) {
     console.log('shoot')
@@ -109,22 +124,45 @@ function init() {
         cells[laserCurrentPosition].classList.remove('troopers') 
         cells[laserCurrentPosition].classList.add('kill') 
         clearInterval(laserId)
+        setTimeout(() => cells[laserCurrentPosition].classList.remove('kill'), 250)
       }
       if (laserCurrentPosition < width) {
         cells[laserCurrentPosition].classList.remove('laser') 
         clearInterval(laserId)
       }
-    }, 100)
-    
-        
-    //   const trooperKill = stormTroopers.indexOf(laserCurrentPosition)
-    //   trooperDestroyed.push(trooperKill)
-    //   score++
-    //   scoreDisplay.textContent = score
-      
-  
+    }, 100)  
+    const trooperKill = stormTroopers.indexOf(laserCurrentPosition)
+    trooperDestroyed.push(trooperKill)
+    score += 100
+    scoreDisplay.textContent = score
+  }
+
+  // * Trooper shoots laser
+
+  function shootPlayer(event) {
+    console.log('shootPlayer')
+    let laserId 
+    let laserCurrentPosition = troopersCurrentPosition 
+
+    laserId = setInterval(() => {
+      cells[laserCurrentPosition].classList.remove('laser')
+      laserCurrentPosition -= width
+      cells[laserCurrentPosition].classList.add('laser')
+      if (cells[laserCurrentPosition].classList.contains('mando')) { 
+        cells[laserCurrentPosition].classList.remove('laser') 
+        cells[laserCurrentPosition].classList.add('kill') 
+        clearInterval(laserId)
+        setTimeout(() => cells[laserCurrentPosition].classList.remove('kill'), 250)
+      }
+      if (laserCurrentPosition < width) {
+        cells[laserCurrentPosition].classList.remove('laser') 
+        clearInterval(laserId)
+      }
+    }, 100)  
   }
   
+
+
   // * Event listener to shoot laser
 
     
@@ -133,6 +171,7 @@ function init() {
       shoot()
     } 
   })
+
 
   // * Event listeners
 

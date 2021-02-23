@@ -16,7 +16,7 @@ function init() {
   const mandoStartPosition = 202
   let mandoCurrentPosition = 202
   let troopersCurrentPosition = 0
-  // let trooperDestroyed = [] 
+  let trooperDestroyed = [] 
   let trooperID
  
   
@@ -29,7 +29,6 @@ function init() {
   function createGrid() {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
@@ -80,56 +79,65 @@ function init() {
   
   let direction = 1
 
-  // function moveTroopers() {
+  function moveTroopers() {
 
-  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
-  //     cells[stormTroopers[i]].classList.remove('troopers') 
-  //   }
-  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
-  //     stormTroopers[i] += direction
-  //   }
-  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
-  //     cells[stormTroopers[i]].classList.add('troopers')
-  //   }
-  // }
-  // trooperID = setInterval(moveTroopers, 500)
+    for (let i = 0; i <= stormTroopers.length - 1; i++) {
+      cells[stormTroopers[i]].classList.remove('troopers') 
+    }
+    for (let i = 0; i <= stormTroopers.length - 1; i++) {
+      stormTroopers[i] += direction
+    }
+    for (let i = 0; i <= stormTroopers.length - 1; i++) {
+      cells[stormTroopers[i]].classList.add('troopers')
+    }
+  }
+  trooperID = setInterval(moveTroopers, 500)
 
   // * Lasers
 
   function shoot(event) {
+    console.log('shoot')
     let laserId 
     let laserCurrentPosition = mandoCurrentPosition
 
-    function moveLaser() {
+    laserId = setInterval(() => {
       cells[laserCurrentPosition].classList.remove('laser')
       laserCurrentPosition -= width
       cells[laserCurrentPosition].classList.add('laser')
-      if (cells.laserCurrentPosition.classList.contains('troopers')) { 
-        console.log('boom')
-        cells.laserCurrentPosition.classList.remove('laser') 
-        cells.laserCurrentPosition.classList.remove('troopers') 
-        cells.laserCurrentPosition.classList.add('boom') 
-        score += 100 
-        scoreDisplay.innerText = score  
-      // } else {
-      //   livesRemaining--  
-      //   livesDisplay.innerText = livesRemaining
+      if (cells[laserCurrentPosition].classList.contains('troopers')) { 
+        cells[laserCurrentPosition].classList.remove('laser') 
+        cells[laserCurrentPosition].classList.remove('troopers') 
+        cells[laserCurrentPosition].classList.add('kill') 
+        clearInterval(laserId)
       }
-    }
+      if (laserCurrentPosition < width) {
+        cells[laserCurrentPosition].classList.remove('laser') 
+        clearInterval(laserId)
+      }
+    }, 100)
+    
+        
+    //   const trooperKill = stormTroopers.indexOf(laserCurrentPosition)
+    //   trooperDestroyed.push(trooperKill)
+    //   score++
+    //   scoreDisplay.textContent = score
+      
   
-    // * Event listener to shoot laser
-
-    document.addEventListener('keyup', event => {
-      if (event.keyCode === 32) {
-        laserId = setInterval(moveLaser, 100)
-      } 
-    })
-
   }
+  
+  // * Event listener to shoot laser
+
+    
+  document.addEventListener('keyup', event => {
+    if (event.keyCode === 32) {
+      shoot()
+    } 
+  })
+
   // * Event listeners
 
   document.addEventListener('keyup', handleKeyUp)
-  document.addEventListener('keyup', shoot)
+  //document.addEventListener('keyup', shoot)
 
   createGrid(mandoStartPosition) 
 

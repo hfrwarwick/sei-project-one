@@ -44,23 +44,25 @@ body {
 }
 
 .grid div.mando {
-  background-image: url('../assets/harrymando.png');
+  background-image: url(../assets/harrymando.png);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .grid div.troopers {
-  background-image: url('../assets/sfirstorderpng.png');
+  background-image: url(../assets/sfirstorderpng.png);
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
 }
 
 .grid div.laser {
-  background-image: url('../assets/red-laser-beam-png.png');
+  background-image: url(../assets/red\ laser.png);
+  background-size: cover;
 }
 
-.grid div.boom {
-  background-image: url('../assets/blood-explosion-png.png');
+.grid div.kill {
+  background-image: url(../assets/blood\ explosion.png);
+  background-size: cover;
 }

@@ -5,17 +5,30 @@
 }
 
 header {
-  /* background-image: url(../assets/Screenshot\ 2021-02-19\ at\ 12.46.55.png); */
+  background: url(../assets/mando\ title\ gold\ png.png);
   background-size: 430px;
   padding: 57px;
-  background-repeat: no-repeat;}
+  background-repeat: no-repeat;
+  text-align: center;
+}
 
 body {
   height: 100vh;
   margin: 0;
-  /* background-image: url(../assets/the-mandalorian-wallpaper-4k.jpg); */
+  background-image: url(../assets/desert\ mando.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
+  font-size: medium;
+  font-family: 'Strait', sans-serif;
+  font-weight: bolder;
+
+}
+
+.scoreLives {
+  background: darkgray;
+  border: 5px solid lightgrey;
+  
 
 }
 

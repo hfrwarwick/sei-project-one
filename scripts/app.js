@@ -160,7 +160,7 @@ function init() {
       }
     }, 100)  
   }
-  
+  // shootPlayer()
 
 
   // * Event listener to shoot laser

@@ -102,11 +102,27 @@ function init() {
         cells[stormTroopers[i]].classList.add('troopers')
       }
     }
+    troopersCurrentPosition.direction = troopersCurrentPosition.direction * -1
+    troopersCurrentPosition.direction += 1
+  
+    // * Game Over
 
+    if (cells[mandoCurrentPosition].classList.contains('troopers', 'mando')) {
+      cells[mandoCurrentPosition].classList.add('kill')
+      livesRemaining--
+    } if (livesRemaining <= 0) {
+      livesDisplay.textContent = 'YOU DIED! GAME OVER!'
+      cells[mandoCurrentPosition].classList.add('kill')
+      clearInterval(trooperID)
+    }
+    for (let i = 0; i <= stormTroopers.length -1; i++) {
+      if (stormTroopers[i] > (cells.length - (width -1))) {
+        livesDisplay.textContent = 'YOU DIED! GAME OVER!'
+        clearInterval(trooperID)
+      }
+    }
   }
   trooperID = setInterval(moveTroopers, 500)
-
-  
 
   // * Player shoots lasers
 
@@ -138,7 +154,6 @@ function init() {
     }, 100)  
     const trooperKill = stormTroopers.indexOf(laserCurrentPosition)
     trooperDestroyed.push(trooperKill)
-    
   }
 
   // * Trooper shoots laser
@@ -166,9 +181,7 @@ function init() {
   }
   // shootPlayer()
 
-
   // * Event listener to shoot laser
-
     
   document.addEventListener('keyup', event => {
     if (event.keyCode === 32) {

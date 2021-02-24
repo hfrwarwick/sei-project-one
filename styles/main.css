@@ -22,12 +22,16 @@ body {
   font-size: medium;
   font-family: 'Strait', sans-serif;
   font-weight: bolder;
-
+}
+.game {
+  display: flex;
+  justify-content: center;
+  
 }
 
 .scoreLives {
   background: darkgray;
-  border: 5px solid lightgrey;
+  border: 5px solid white;
   
 
 }
@@ -41,7 +45,7 @@ body {
 
 .grid {
   align-items: center;
-  background-color: darkgray;
+  background-color: white;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

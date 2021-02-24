@@ -51,7 +51,7 @@ function init() {
 
   // * Add Troopers 
 
-  const stormTroopers = [
+  let stormTroopers = [
     0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
     15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
     30, 31, 32, 33, 34, 35, 36, 37, 38, 39
@@ -78,33 +78,33 @@ function init() {
 
   // * Move Troopers 
   
-  // let direction = 1
+  let direction = 1
 
-  // function moveTroopers() {
-  //   const leftSide = stormTroopers[0] % width === 0
-  //   const rightSide = stormTroopers[stormTroopers.length -1] % width === width -1
+  function moveTroopers() {
+    const leftSide = stormTroopers[0] % width === 0
+    const rightSide = stormTroopers[stormTroopers.length -1] % width === width -1
 
-  //   if ((leftSide && direction === -1) || (rightSide && direction === 1)){
-  //     direction = width
-  //   } else if (direction === width) {
-  //     if (leftSide) direction = 1
-  //     else direction = -1
-  //   }
+    if ((leftSide && direction === -1) || (rightSide && direction === 1)){
+      direction = width
+    } else if (direction === width) {
+      if (leftSide) direction = 1
+      else direction = -1
+    }
 
-  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
-  //     cells[stormTroopers[i]].classList.remove('troopers') 
-  //   }
-  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
-  //     stormTroopers[i] += direction
-  //   }
-  //   for (let i = 0; i <= stormTroopers.length - 1; i++) {
-  //     if (!trooperDestroyed.includes(i)) {
-  //       cells[stormTroopers[i]].classList.add('troopers')
-  //     }
-  //   }
+    for (let i = 0; i <= stormTroopers.length - 1; i++) {
+      cells[stormTroopers[i]].classList.remove('troopers') 
+    }
+    for (let i = 0; i <= stormTroopers.length - 1; i++) {
+      stormTroopers[i] += direction
+    }
+    for (let i = 0; i <= stormTroopers.length - 1; i++) {
+      if (!trooperDestroyed.includes(i)) {
+        cells[stormTroopers[i]].classList.add('troopers')
+      }
+    }
 
-  // }
-  // trooperID = setInterval(moveTroopers, 500)
+  }
+  trooperID = setInterval(moveTroopers, 500)
 
   
 
@@ -123,6 +123,11 @@ function init() {
         cells[laserCurrentPosition].classList.remove('laser') 
         cells[laserCurrentPosition].classList.remove('troopers') 
         cells[laserCurrentPosition].classList.add('kill') 
+        stormTroopers = stormTroopers.filter( kill => {
+          return laserCurrentPosition !== kill
+        }) 
+        score += 100
+        scoreDisplay.textContent = score
         clearInterval(laserId)
         setTimeout(() => cells[laserCurrentPosition].classList.remove('kill'), 250)
       }
@@ -133,8 +138,7 @@ function init() {
     }, 100)  
     const trooperKill = stormTroopers.indexOf(laserCurrentPosition)
     trooperDestroyed.push(trooperKill)
-    score += 100
-    scoreDisplay.textContent = score
+    
   }
 
   // * Trooper shoots laser

@@ -95,13 +95,13 @@ function init() {
       if ((leftSide && direction === -1) || (rightSide && direction === 1)){
         clearInterval(trooperID)
         direction = width
-        // speed = speed - 25
+        speed = speed - 20
         moveTroopers()
       } else if (direction === width) {
         clearInterval(trooperID)
         if (leftSide) direction = 1
         else direction = -1
-        // speed = speed - 25
+        speed = speed - 20
         moveTroopers()
       }
     
@@ -120,7 +120,7 @@ function init() {
 
       // * To Win
 
-      if (trooperDestroyed.length === 0) {
+      if (trooperDestroyed.length === stormTroopers.length) {
         livesDisplay.textContent = 'You Win'
         clearInterval(trooperID)
       }

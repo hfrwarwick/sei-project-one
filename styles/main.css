@@ -23,7 +23,17 @@ body {
   font-family: 'Strait', sans-serif;
   font-weight: bolder;
 }
+/* 
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+} */
 
+.yoda {
+  text-align: right;
+  height: 69vh;
+}
 .game {
   display: flex;
   justify-content: center;

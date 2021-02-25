@@ -5,7 +5,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const scoreDisplay = document.querySelector('#score') 
   const livesDisplay = document.querySelector('#lives')
-  // const startButton = document.querySelector('#startGame')
+  const startButton = document.querySelector('.startGame')
   const width = 15
   const cellCount = width * width
   const cells = []
@@ -21,16 +21,13 @@ function init() {
   let trooperID
   
  
-  // // * Start Game
-  // function startGame() {
-  //   console.log('Game Started!')
-  //   addMando()
-  //   addTroopers()
-  //   trooperAttack()
-  //   removeMando()
-  //   addTroopers()
-  // }
-  // startButton.addEventListener('click', startGame)
+  // * Start Game
+  function startGame() {
+    console.log('Game Started!')
+
+    moveTroopers()
+  }
+  startButton.addEventListener('click', startGame)
 
   // * Make a grid
 
@@ -91,58 +88,66 @@ function init() {
 
   function moveTroopers() {
 
-    const leftSide = stormTroopers[0] % width === 0
-    const rightSide = stormTroopers[stormTroopers.length -1] % width === width -1
+    trooperID = setInterval(() => {
+      const leftSide = stormTroopers[0] % width === 0
+      const rightSide = stormTroopers[stormTroopers.length -1] % width === width -1
 
-    if ((leftSide && direction === -1) || (rightSide && direction === 1)){
-      direction = width
-      speed = speed - 25
-    } else if (direction === width) {
-      if (leftSide) direction = 1
-      else direction = -1
-      speed = speed - 25
-    }
-    
-
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      cells[stormTroopers[i]].classList.remove('troopers') 
-    }
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      stormTroopers[i] += direction
-    }
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      if (!trooperDestroyed.includes(i)) {
-        cells[stormTroopers[i]].classList.add('troopers')
+      if ((leftSide && direction === -1) || (rightSide && direction === 1)){
+        clearInterval(trooperID)
+        direction = width
+        // speed = speed - 25
+        moveTroopers()
+      } else if (direction === width) {
+        clearInterval(trooperID)
+        if (leftSide) direction = 1
+        else direction = -1
+        // speed = speed - 25
+        moveTroopers()
       }
-    }
-
-    // * To Win
-
-    if (trooperDestroyed.length === stormTroopers.length) {
-      livesDisplay.textContent = 'You Win'
-      clearInterval(trooperID)
-    }
     
-    // * Game Over
 
-    if (cells[mandoCurrentPosition].classList.contains('troopers', 'mando')) {
-      cells[mandoCurrentPosition].classList.add('kill')
-      livesRemaining--
-    } if (livesRemaining <= 0) {
-      livesDisplay.textContent = 'YOU DIED! GAME OVER!'
-      cells[mandoCurrentPosition].classList.add('kill')
-      clearInterval(trooperID)
-    }
-    for (let i = 0; i <= stormTroopers.length - 1; i++) {
-      if (stormTroopers[i] > (cells.length - (width - 1))) {
-        livesDisplay.textContent = 'YOU DIED! GAME OVER!'
+      for (let i = 0; i <= stormTroopers.length - 1; i++) {
+        cells[stormTroopers[i]].classList.remove('troopers') 
+      }
+      for (let i = 0; i <= stormTroopers.length - 1; i++) {
+        stormTroopers[i] += direction
+      }
+      for (let i = 0; i <= stormTroopers.length - 1; i++) {
+        if (!trooperDestroyed.includes(i)) {
+          cells[stormTroopers[i]].classList.add('troopers')
+        }
+      }
+
+      // * To Win
+
+      if (trooperDestroyed.length === 0) {
+        livesDisplay.textContent = 'You Win'
         clearInterval(trooperID)
       }
-    }
-    console.log(speed)
+    
+      // * Game Over
+
+      if (cells[mandoCurrentPosition].classList.contains('troopers', 'mando')) {
+        cells[mandoCurrentPosition].classList.add('kill')
+        livesRemaining--
+      } if (livesRemaining <= 0) {
+        livesDisplay.textContent = 'YOU DIED! GAME OVER!'
+        cells[mandoCurrentPosition].classList.add('kill')
+        clearInterval(trooperID)
+      }
+      for (let i = 0; i <= stormTroopers.length - 1; i++) {
+        if (stormTroopers[i] > (cells.length - (width - 1))) {
+          livesDisplay.textContent = 'YOU DIED! GAME OVER!'
+          clearInterval(trooperID)
+        }
+      }
+      console.log(speed)
+
+    }, speed)
+    
     
   }
-  trooperID = setInterval(moveTroopers, speed)
+ 
 
   
   // * Player shoots lasers
@@ -179,49 +184,49 @@ function init() {
 
   // * Trooper shoots laser
 
-  let randomCell = 0
-  let attackExists = false
-  let attackPosition = 0
+  // let randomCell = 0
+  // let attackExists = false
+  // let attackPosition = 0
   
-  function trooperAttack() {
-    let randomCell = cells[Math.floor(Math.random() * (cells.length))]
-    let randomNumber = Number(randomCell.innerText)
-    console.log(randomNumber)
-    let lifeCount = 3
-    const attackTimer = setInterval(() => {
-      if (attackExists === false) {
-        randomCell = cells[Math.floor(Math.random() * (cells.length))]
-        console.log(randomCell)
-        randomNumber = Number(randomCell.innerText)
-        attackPosition = randomNumber + 10
-        if (randomCell.className === trooperClass && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== trooperClass) {
-          cells[attackPosition].classList.add('laser')
-          //console.log('Fire!')
-          attackExists = true
-        }
-      } else if (attackExists === true) {
-        if (attackPosition < 90) {
-          cells[attackPosition].classList.remove('laser')
-          attackPosition = attackPosition + 10
-          cells[attackPosition].classList.add('laser')
-        } if (attackPosition >= 90) {
-          if (cells.className !== mandoClass ) {
-            cells[attackPosition].classList.remove('laser')
-            attackExists = false
-          } else if (cells.className === mandoClass && cells.className === 'laser') {
-            console.log('Lose Life!')
-            lifeCount = lifeCount - 1
-            attackExists = false
-          } else {
-            console.log('INNER WRONG!')
-          }
-        }
-      } else {
-        console.log('OUTER WRONG!')
-      }
-    }, 2000)
-  }
-  console.log(trooperAttack)
+  // function trooperAttack() {
+  //   let randomCell = cells[Math.floor(Math.random() * (cells.length))]
+  //   let randomNumber = Number(randomCell.innerText)
+  //   console.log(randomNumber)
+  //   let lifeCount = 3
+  //   const attackTimer = setInterval(() => {
+  //     if (attackExists === false) {
+  //       randomCell = cells[Math.floor(Math.random() * (cells.length))]
+  //       console.log(randomCell)
+  //       randomNumber = Number(randomCell.innerText)
+  //       attackPosition = randomNumber + 10
+  //       if (randomCell.className === trooperClass && randomNumber % 2 === 0 && cells[randomNumber + 10].className !== trooperClass) {
+  //         cells[attackPosition].classList.add('laser')
+  //         //console.log('Fire!')
+  //         attackExists = true
+  //       }
+  //     } else if (attackExists === true) {
+  //       if (attackPosition < 90) {
+  //         cells[attackPosition].classList.remove('laser')
+  //         attackPosition = attackPosition + 10
+  //         cells[attackPosition].classList.add('laser')
+  //       } if (attackPosition >= 90) {
+  //         if (cells.className !== mandoClass ) {
+  //           cells[attackPosition].classList.remove('laser')
+  //           attackExists = false
+  //         } else if (cells.className === mandoClass && cells.className === 'laser') {
+  //           console.log('Lose Life!')
+  //           lifeCount = lifeCount - 1
+  //           attackExists = false
+  //         } else {
+  //           console.log('INNER WRONG!')
+  //         }
+  //       }
+  //     } else {
+  //       console.log('OUTER WRONG!')
+  //     }
+  //   }, 2000)
+  // }
+  // console.log(trooperAttack)
    
 
 

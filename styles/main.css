@@ -23,11 +23,15 @@ body {
   font-family: 'Strait', sans-serif;
   font-weight: bolder;
 }
-/* 
+
 .leftSide {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: space-between;
+}
+
+/* header {
+  text-align: right;
 } */
 
 .yoda {

@@ -5,7 +5,7 @@
 }
 
 header {
-  background: url(../assets/mando\ title\ gold\ png.png);
+  
   background-size: 430px;
   padding: 57px;
   background-repeat: no-repeat;
@@ -18,10 +18,11 @@ body {
   background-image: url(../assets/desert\ mando.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
+  color: black;
   font-size: medium;
   font-family: 'Strait', sans-serif;
   font-weight: bolder;
+  font-size: 20px;
 }
 
 .leftSide {
@@ -30,22 +31,37 @@ body {
   justify-content: space-between;
 }
 
+.leftTitle {
+  display: flex;
+  flex-direction: column;
+}
 /* header {
   text-align: right;
 } */
 
-.yoda {
-  text-align: right;
-  height: 69vh;
+
+button {
+  border-radius: 2px;
+  font-family: sans-serif;
 }
+
+#musicKey {
+  font-size: 14px;
+}
+.yoda {
+ display: flex;
+ justify-content: space-between;
+ flex-direction: column;
+}
+
 .game {
   display: flex;
   justify-content: center;
 }
 
 .scoreLives {
-  background: darkgray;
-  border: 5px solid white;
+  background: white;
+  border: 5px solid #C5B358	;
 }
 
 .grid-wrapper {
@@ -66,7 +82,7 @@ body {
 }
 
 .grid div {
-  border: 1px solid lightgrey;
+  border: 1px solid #C5B358;
   flex-grow: 1;
   height: 54px;
   width: 40px;

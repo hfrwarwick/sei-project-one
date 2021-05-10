@@ -52,8 +52,7 @@ function createGrid() {
    addMando(mandoCurrentPosition)
  }
 ```
-- I placed the invaders on the grid by creating an invaders array, which included the index values of the squares on the grid</br>
-
+- I placed the invaders on the grid by creating an invaders array, which included the index values of the squares on the grid</br>
 - Then I worked on the invader movement logic, which moves the invaders right, down, left and down following a lead invader. I created a timer to move the invader armada until the invaders reach the bottom row.
 ```
  let direction = 1

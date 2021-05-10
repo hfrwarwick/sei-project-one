@@ -11,10 +11,10 @@ The game has been deployed with GitHub Pages and is available [link](https://hfr
 To build a functioning browser game with pure JavaScript in 8 days.
 
 <h2>Technologies used:</h2>
-• HTML5</br>
-• CSS3 </br>
-• JavaScript </br>
-• GitHub </br>
+- HTML5</br>
+- CSS3 </br>
+- JavaScript </br>
+- GitHub </br>
 
 <h2>Brief:</h2>
 Space Invaders is a classic 80s arcade game. The player, moving left or right, aims to shoot an invading alien armada and achieve the highest score possible before either being eradicated by lasers that the aliens shoot periodically, or allowing the armada to reach Planet Earth's surface. Each time the aliens reach the edge of the grid, they increase in speed. My iteration pays tribute to Star War’s The Mandolarian. The user plays and controls The Madolorian. Shooting and avoiding lasers from the approaching Stormtroopers
@@ -24,9 +24,9 @@ I started developing the game by sketching out a plan on Trello of all the diffe
 </br>
 
 
-• I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width. I then pushed these divs to an empty array and appended them to the grid div in my HTML.</br>
+- I created the game grid square by setting a value for width, using a for-loop to create a div element while the index value was less than width times width. I then pushed these divs to an empty array and appended them to the grid div in my HTML.</br>
 
-• I made one div for player spaceship, and created keydown event listeners to allow the player to move and fire when the corresponding keys are pressed, with logic to refrain player from moving off the grid.
+- I made one div for player spaceship, and created keydown event listeners to allow the player to move and fire when the corresponding keys are pressed, with logic to refrain player from moving off the grid.
 ```
 function createGrid() {
    for (let i = 0; i < cellCount; i++) {
@@ -38,7 +38,7 @@ function createGrid() {
    addTroopers(troopersCurrentPosition)
  }
 ```
-• To cause the player to move, I created an if statement that the left or right arrow was pressed it would move the player left or right from its current possition.
+- To cause the player to move, I created an if statement that the left or right arrow was pressed it would move the player left or right from its current possition.
 
 ```
  function handleKeyUp(event) {
@@ -52,9 +52,9 @@ function createGrid() {
    addMando(mandoCurrentPosition)
  }
 ```
-• I placed the invaders on the grid by creating an invaders array, which included the index values of the squares on the grid</br>
+- I placed the invaders on the grid by creating an invaders array, which included the index values of the squares on the grid</br>
 
-• Then I worked on the invader movement logic, which moves the invaders right, down, left and down following a lead invader. I created a timer to move the invader armada until the invaders reach the bottom row.
+- Then I worked on the invader movement logic, which moves the invaders right, down, left and down following a lead invader. I created a timer to move the invader armada until the invaders reach the bottom row.
 ```
  let direction = 1
  let speed = 700
@@ -89,9 +89,9 @@ function createGrid() {
        }
      }
 ```
-• When the invaders reach the bottom row or when the player is hit by invader fire, this calls a Game Over function which displays player's score and clears the grid and resets the game variables. </br>
+- When the invaders reach the bottom row or when the player is hit by invader fire, this calls a Game Over function which displays player's score and clears the grid and resets the game variables. </br>
 
-• So the alien would be removed from the grid if the laser hit it, I created an if statement. If the laser is in the same grid as the alien, it would remove the alien, if it wasn't it would continue up the grid.
+- So the alien would be removed from the grid if the laser hit it, I created an if statement. If the laser is in the same grid as the alien, it would remove the alien, if it wasn't it would continue up the grid.
 ```
 function shoot(event) {
    console.log('shoot')
@@ -127,22 +127,22 @@ When the Storm Troopers shoot back, the lasers don’t travel down the grid all 
 
 <h2>Challenges</h2>
 This was my first project using JavaScript so I faced many challenges, of which the biggest were: </br> </br>
-• Collision detection logic,</br>
-• Getting the Aliens to speed up when they hit the edge of the grid, </br>
-• Getting the player’s laser to move up the grid,</br>
-• Working with various set timers to create movement</br>
+- Collision detection logic,</br>
+- Getting the Aliens to speed up when they hit the edge of the grid, </br>
+- Getting the player’s laser to move up the grid,</br>
+- Working with various set timers to create movement</br>
 
 <h2>Wins</h2>
-• Creating my first project by myself, </br>
-• Boosting my own confidence in my coding abilities,</br>
-• Fun and satisfying. </br>
+- Creating my first project by myself, </br>
+- Boosting my own confidence in my coding abilities,</br>
+- Fun and satisfying. </br>
 
 <h2>Future improvements</h2>
 A few issues remain to be ironed out, and there are also a few features I would like to add going forward:</br> </br>
-• I would like another couple levels that increase in difficulty, and change the starting position of the Troopers. </br>
-• Create a better starting menu when the user joins.</br>
-• Create a better ‘You Win’ menu</br>
-• Clean up the code
+- I would like another couple levels that increase in difficulty, and change the starting position of the Troopers. </br>
+- Create a better starting menu when the user joins.</br>
+- Create a better ‘You Win’ menu</br>
+- Clean up the code
 
 <h2>Key learnings</h2>
 Making my first static JS browser game from scratch was a great learning exercise and a fun way to consolidate my learnings. In particular, I learnt a lot about DOM manipulation, different use cases for different JS array methods, and working with timers.

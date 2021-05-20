@@ -5,7 +5,7 @@ My first dev project for the Software Engineering Immersive course and also my f
 <img src="https://media.giphy.com/media/2OMgHz7W3NgXFvBH4Y/giphy.gif"/>
 
 <h2>Deployment</h2>
-The game has been deployed with GitHub Pages and is available [link](https://hfrwarwick.github.io/sei-project-one/)
+The game has been deployed with GitHub Pages and is available (https://hfrwarwick.github.io/sei-project-one/)
 
 <h2>Goal and Timeframe:</h2>
 To build a functioning browser game with pure JavaScript in 8 days.
